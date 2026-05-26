@@ -1,0 +1,252 @@
+/*
+|--------------------------------------------------------------------------
+| Top Bar
+|--------------------------------------------------------------------------
+*/
+
+.top-bar-area {
+    background: #051922;
+    color: white;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Header
+|--------------------------------------------------------------------------
+*/
+
+.top-header-area {
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+    padding: 0 !important;
+    background: #051922;
+}
+
+.main-menu ul li a {
+    padding: 20px 16px !important;
+}
+
+.site-logo img {
+    max-height: 55px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Body Fix
+|--------------------------------------------------------------------------
+*/
+
+body {
+    padding-top: 65px;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Slider
+|--------------------------------------------------------------------------
+*/
+
+.homepage-slider {
+    margin-top: 0 !important;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Buttons
+|--------------------------------------------------------------------------
+*/
+
+.add-btn,
+.cart-btn {
+    background: #f28123;
+    color: white !important;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.add-btn:hover,
+.cart-btn:hover {
+    background: #051922;
+    color: white !important;
+}
+
+.update-btn,
+.cart-update-btn {
+    background: #f28123;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.update-btn:hover,
+.cart-update-btn:hover {
+    background: #051922;
+}
+
+.cart-remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.cart-remove-btn:hover {
+    background: #a71d2a;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Cards
+|--------------------------------------------------------------------------
+*/
+
+.custom-card {
+    transition: 0.3s;
+    border-radius: 10px;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Pagination
+|--------------------------------------------------------------------------
+*/
+
+.pagination {
+    justify-content: center;
+}
+
+.pagination svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pagination .page-link {
+    color: #f28123;
+    border-radius: 8px;
+    margin: 0 3px;
+}
+
+.pagination .active .page-link {
+    background-color: #f28123;
+    border-color: #f28123;
+    color: white;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Footer
+|--------------------------------------------------------------------------
+*/
+
+.footer-area {
+    padding: 60px 0 !important;
+}
+
+.footer-box {
+    margin-bottom: 20px;
+}
+
+.copyright {
+    padding: 20px 0 !important;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Toast
+|--------------------------------------------------------------------------
+*/
+
+.toast-msg {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 9999;
+}
+
+.toast-msg.show {
+    opacity: 1;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Search
+|--------------------------------------------------------------------------
+*/
+
+.search-loading,
+.search-empty,
+.search-error {
+    padding: 15px;
+    text-align: center;
+}
+
+.search-loading {
+    font-weight: 600;
+    color: #f28123;
+}
+
+.search-error {
+    color: red;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin: 5px;
+    border-radius: 12px;
+    border-bottom: 1px solid #f1f1f1;
+    color: black;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.search-item:hover {
+    background: #f5f5f5;
+}
+
+.search-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.search-item-title {
+    font-weight: bold;
+}
+
+.search-item-price {
+    color: gray;
+}
