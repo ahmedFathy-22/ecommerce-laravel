@@ -24,46 +24,30 @@
 
                         <ul>
 
-                            <li class="current-list-item">
-
-                                <a href="{{ route('home') }}">
-                                    Home
-                                </a>
-
+                            <li class="{{ request()->routeIs('home') ? 'current-list-item' : '' }}">
+                                <a href="{{ route('home') }}">Home</a>
                             </li>
 
-                            <li>
-
-                                <a href="{{ route('products.index') }}">
-                                    Shop
-                                </a>
-
+                            <li class="{{ request()->routeIs('products.*') ? 'current-list-item' : '' }}">
+                                <a href="{{ route('products.index') }}">Shop</a>
                             </li>
 
-                            <li>
-
-                                <a href="{{ route('categories.index') }}">
-                                    Categories
-                                </a>
-
+                            <li class="{{ request()->routeIs('categories.*') ? 'current-list-item' : '' }}">
+                                <a href="{{ route('categories.index') }}">Categories</a>
                             </li>
 
-                            <li>
+                            <li class="{{ request()->routeIs('about') ? 'current-list-item' : '' }}">
                                 <a href="{{ route('about') }}">About</a>
                             </li>
 
-                            <li>
-                                <a href="{{ route('contact') }}">
-                                    Contact
-                                </a>
+                            <li class="{{ request()->routeIs('contact') ? 'current-list-item' : '' }}">
+                                <a href="{{ route('contact') }}">Contact</a>
                             </li>
 
                             @if (auth()->check() && auth()->user()->is_admin)
-                                <li>
+                                <li class="{{ request()->routeIs('admin.*') ? 'current-list-item' : '' }}">
 
-                                    <a href="#">
-                                        Admin
-                                    </a>
+                                    <a href="#">Admin</a>
 
                                     <ul class="sub-menu">
 
@@ -98,52 +82,43 @@
 
                             @auth
 
-                                <li>
+                                <li class="{{ request()->routeIs('wishlist') ? 'current-list-item' : '' }}">
                                     <a href="{{ route('wishlist') }}">
                                         <i class="fas fa-heart"></i> Wishlist
                                     </a>
                                 </li>
 
-                                <li>
+                                <li class="{{ request()->routeIs('my.orders') ? 'current-list-item' : '' }}">
                                     <a href="{{ route('my.orders') }}">
                                         <i class="fas fa-box"></i> My Orders
                                     </a>
                                 </li>
 
-                                <li>
+                                <li class="{{ request()->routeIs('profile.*') ? 'current-list-item' : '' }}">
                                     <a href="{{ route('profile.edit') }}">
                                         <i class="fas fa-user"></i> Profile
                                     </a>
                                 </li>
 
                                 <li>
-
                                     <form action="{{ route('logout') }}" method="POST">
-
                                         @csrf
-
                                         <button type="submit" class="logout-btn">
                                             Logout
                                         </button>
-
                                     </form>
-
                                 </li>
                             @else
-                                <li>
-
+                                <li class="{{ request()->routeIs('login') ? 'current-list-item' : '' }}">
                                     <a href="{{ route('login') }}">
                                         Login
                                     </a>
-
                                 </li>
 
-                                <li>
-
+                                <li class="{{ request()->routeIs('register') ? 'current-list-item' : '' }}">
                                     <a href="{{ route('register') }}">
                                         Register
                                     </a>
-
                                 </li>
 
                             @endauth

@@ -11,6 +11,81 @@
     font-size: 14px;
 }
 
+/* Navbar Layout Fix */
+
+.main-menu-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.site-logo{
+    margin-top:0 !important;
+}
+
+.site-logo a{
+    display:flex;
+    align-items:center;
+    height:80px;
+}
+
+.main-menu{
+    flex:1;
+    text-align:center;
+}
+
+.main-menu ul{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:nowrap;
+}
+
+.main-menu ul li{
+    margin:0 2px;
+}
+
+.main-menu ul li a{
+    padding:20px 10px !important;
+    font-size:14px;
+}
+
+.header-icons{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+/* Fix Admin Dropdown */
+
+.main-menu ul li {
+    position: relative;
+}
+
+.main-menu ul li .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: #051922;
+    z-index: 9999;
+}
+
+.main-menu ul li:hover .sub-menu {
+    display: block;
+}
+
+.main-menu ul li .sub-menu li {
+    display: block;
+    width: 100%;
+}
+
+.main-menu ul li .sub-menu li a {
+    display: block;
+    padding: 12px 20px !important;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Header
@@ -46,7 +121,7 @@
 */
 
 body {
-    padding-top: 65px;
+    padding-top: 90px;
 }
 
 /*
@@ -265,3 +340,4 @@ body {
 .search-item-price {
     color: gray;
 }
+
