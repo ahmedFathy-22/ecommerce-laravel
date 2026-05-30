@@ -310,4 +310,8 @@ Route::prefix('admin')
 
     });
 
+Route::view('/about', 'layouts.about')->name('about');
+
+Route::view('/contact', 'layouts.contact')->name('contact');
+
 require __DIR__ . '/auth.php';

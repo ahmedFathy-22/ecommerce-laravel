@@ -21,23 +21,16 @@
                         $product = $item->product;
                     @endphp
                     <div class="col-lg-4 col-md-6 text-center">
-                        <div class="single-product-item position-relative">
-
-                            {{-- ❤️ أيقونة Wishlist فوق --}}
-                            <div style="position:absolute; top:10px; right:10px;">
-                                <a href="{{ url('/wishlist/remove/' . $product->id) }}" style="font-size:22px; color:red;">
-                                    ❤️
-                                </a>
-                                <a href="{{ url('/wishlist/add/' . $product->id) }}" style="font-size:22px; color:#ccc;">
-                                    🤍
-                                </a>
-                            </div>
-
+                        <div class="single-product-item position-relative shadow-sm"
+                            style="border-radius:15px; overflow:hidden;">
+                            <a href="{{ url('/wishlist/remove/' . $product->id) }}">
+                                <i class="fas fa-heart text-danger"></i>
+                            </a>
                             {{-- الصورة --}}
                             <div class="product-image">
                                 <a href="{{ route('products.show', $product->id) }}">
                                     <img src="{{ asset($product->image) }}" class="img-fluid"
-                                        style="height:200px; width:100%; object-fit:cover;">
+                                        style="height:250px; width:100%; object-fit:cover;">
                                 </a>
                             </div>
 
@@ -55,8 +48,12 @@
                             </p>
 
                             {{-- زر أساسي واحد بس --}}
-                            <button type="button" class="cart-btn add-btn mt-2" onclick="addToCart({{ $product->id }})" 🛒
-                                Add to Cart </button>
+                            <button type="button" class="cart-btn add-btn mt-2" onclick="addToCart({{ $product->id }})">
+
+                                <i class="fas fa-shopping-cart"></i>
+                                Add To Cart
+
+                            </button>
 
                         </div>
                     </div>

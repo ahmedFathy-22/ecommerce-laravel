@@ -29,10 +29,16 @@
     padding: 20px 16px !important;
 }
 
-.site-logo img {
-    max-height: 55px;
+.logo-text{
+    font-size:32px;
+    font-weight:700;
+    color:white;
+    text-decoration:none;
 }
 
+.logo-text span{
+    color:#F28123;
+}
 /*
 |--------------------------------------------------------------------------
 | Body Fix
@@ -112,6 +118,15 @@ body {
     color: white;
     cursor: pointer;
     font-weight: 600;
+}
+
+#cart-count{
+    background:#F28123;
+    color:white;
+    border-radius:50%;
+    padding:2px 7px;
+    font-size:12px;
+    margin-left:4px;
 }
 
 /*

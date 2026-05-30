@@ -11,12 +11,9 @@
                     <!-- Logo -->
                     <div class="site-logo">
 
-                        <a href="{{ route('home') }}">
+                        <a href="{{ route('home') }}" class="logo-text">
 
-                            <img
-                                src="{{ asset('assets/img/logo.png') }}"
-                                alt="Logo"
-                            >
+                            Shop<span>Hub</span>
 
                         </a>
 
@@ -51,8 +48,17 @@
 
                             </li>
 
-                            @if(auth()->check() && auth()->user()->is_admin)
+                            <li>
+                                <a href="{{ route('about') }}">About</a>
+                            </li>
 
+                            <li>
+                                <a href="{{ route('contact') }}">
+                                    Contact
+                                </a>
+                            </li>
+
+                            @if (auth()->check() && auth()->user()->is_admin)
                                 <li>
 
                                     <a href="#">
@@ -88,51 +94,42 @@
                                     </ul>
 
                                 </li>
-
                             @endif
 
                             @auth
 
                                 <li>
                                     <a href="{{ route('wishlist') }}">
-                                        ❤️ Wishlist
+                                        <i class="fas fa-heart"></i> Wishlist
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="{{ route('my.orders') }}">
-                                        📦 My Orders
+                                        <i class="fas fa-box"></i> My Orders
                                     </a>
                                 </li>
 
                                 <li>
                                     <a href="{{ route('profile.edit') }}">
-                                        👤 Profile
+                                        <i class="fas fa-user"></i> Profile
                                     </a>
                                 </li>
 
                                 <li>
 
-                                    <form
-                                        action="{{ route('logout') }}"
-                                        method="POST"
-                                    >
+                                    <form action="{{ route('logout') }}" method="POST">
 
                                         @csrf
 
-                                        <button
-                                            type="submit"
-                                            class="logout-btn"
-                                        >
+                                        <button type="submit" class="logout-btn">
                                             Logout
                                         </button>
 
                                     </form>
 
                                 </li>
-
                             @else
-
                                 <li>
 
                                     <a href="{{ route('login') }}">
@@ -155,12 +152,9 @@
 
                                 <div class="header-icons">
 
-                                    <a
-                                        class="shopping-cart"
-                                        href="{{ route('cart') }}"
-                                    >
+                                    <a class="shopping-cart" href="{{ route('cart') }}">
 
-                                        🛒
+                                        <i class="fas fa-shopping-cart"></i>
 
                                         <span id="cart-count">
 
@@ -170,10 +164,7 @@
 
                                     </a>
 
-                                    <a
-                                        class="mobile-hide search-bar-icon"
-                                        href="#"
-                                    >
+                                    <a class="mobile-hide search-bar-icon" href="#">
 
                                         <i class="fas fa-search"></i>
 
