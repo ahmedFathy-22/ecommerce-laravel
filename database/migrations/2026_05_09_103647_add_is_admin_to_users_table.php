@@ -29,8 +29,3 @@ return new class extends Migration {
     }
 };
 
-$user = App\Models\User::find(5);
-
-$user->is_admin = true;
-
-$user->save();

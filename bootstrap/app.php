@@ -12,9 +12,13 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
-
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        ]);
 
+        // استثناء Stripe webhook من CSRF لأن Stripe بتنادي
+        // الـ endpoint ده server-to-server، مفيش session/CSRF token هناك أصلاً.
+        $middleware->validateCsrfTokens(except: [
+            'stripe/webhook',
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

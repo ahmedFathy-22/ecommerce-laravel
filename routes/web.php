@@ -91,6 +91,20 @@ Route::get('/search-live', [ProductController::class, 'liveSearch']);
 
 /*
 |--------------------------------------------------------------------------
+| Stripe Webhook
+|--------------------------------------------------------------------------
+| ده endpoint بتنادي عليه Stripe نفسها (server-to-server)، مش اليوزر من المتصفح.
+| - برّه middleware('auth') لأن مفيش session/يوزر مسجل دخول وقت النداء.
+| - مستثنى من CSRF verification في bootstrap/app.php (withMiddleware).
+| - التحقق من صحة النداء بيحصل جوا webhook() نفسها عن طريق Stripe-Signature.
+|--------------------------------------------------------------------------
+*/
+
+Route::post('/stripe/webhook', [CheckoutController::class, 'webhook'])
+    ->name('stripe.webhook');
+
+/*
+|--------------------------------------------------------------------------
 | Authenticated User Routes
 |--------------------------------------------------------------------------
 */
@@ -121,6 +135,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/stripe', [CheckoutController::class, 'stripe'])
         ->name('stripe');
 
+    // داخل auth، وOwnership check جوا CheckoutController::success()
+    // بيتأكد إن $order->user_id == auth()->id() قبل ما يعرض حاجة.
+    Route::get('/payment/success/{order}', [CheckoutController::class, 'success'])
+        ->name('payment.success');
+
     /*
     |--------------------------------------------------------------------------
     | User Orders
@@ -129,6 +148,17 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/my-orders', [UserOrderController::class, 'index'])
         ->name('my.orders');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Invoice
+    |--------------------------------------------------------------------------
+    */
+
+    // داخل auth، محتاجة ownership check جوا OrderController::invoice()
+    // (هنضيفها لما تبعت الملف).
+    Route::get('/invoice/{order}', [OrderController::class, 'invoice'])
+        ->name('invoice');
 
     /*
     |--------------------------------------------------------------------------
@@ -189,16 +219,11 @@ Route::middleware('auth')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Payment Success
+| Order Success (Legacy/Duplicate)
 |--------------------------------------------------------------------------
-*/
-
-Route::get('/payment/success/{order}', [CheckoutController::class, 'success'])
-    ->name('payment.success');
-
-/*
-|--------------------------------------------------------------------------
-| Order Success
+| ⚠️ سيبتها هنا عمدًا لحد ما تتأكد إنها مش مستخدمة في حتة في الكود
+| (views/emails) قبل ما تمسحها أو تحطها جوا auth زي /payment/success.
+| لسه برّه middleware وبدون ownership check.
 |--------------------------------------------------------------------------
 */
 
@@ -213,24 +238,6 @@ Route::get('/order/success/{id}', function ($id) {
     );
 
 })->name('order.success');
-
-/*
-|--------------------------------------------------------------------------
-| Invoice
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/invoice/{order}', [OrderController::class, 'invoice'])
-    ->name('invoice');
-
-/*
-|--------------------------------------------------------------------------
-| Export Orders
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/orders/export', [OrderController::class, 'export'])
-    ->name('orders.export');
 
 /*
 |--------------------------------------------------------------------------
@@ -307,6 +314,16 @@ Route::prefix('admin')
 
         Route::post('/orders/{id}/status', [OrderController::class, 'updateStatus'])
             ->name('orders.status');
+
+        /*
+        |--------------------------------------------------------------------------
+        | Export Orders
+        |--------------------------------------------------------------------------
+        */
+
+        // داخل admin بقى - كانت متاحة لأي زائر بدون تسجيل دخول قبل كده.
+        Route::get('/orders/export', [OrderController::class, 'export'])
+            ->name('orders.export');
 
     });
 
